@@ -1,0 +1,38 @@
+$category-bg-color: #f4f4f4;
+$category-bg-color-active: #282828;
+
+.categories {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  @media (min-width: 768px) {
+    gap: 12px;
+  }
+}
+
+.category {
+  padding: 5px 20px;
+  color: $category-bg-color-active;
+  background: $category-bg-color;
+  border-radius: 30px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+
+  @media (min-width: 768px) {
+    padding: 10px 35px;
+  }
+
+  &:hover {
+    color: $category-bg-color;
+    background: $category-bg-color-active;
+    box-shadow: 0px 10px 15px 0px rgba(0, 0, 0, 0.29);
+  }
+}
+
+.active {
+  color: $category-bg-color;
+  background: $category-bg-color-active;
+}

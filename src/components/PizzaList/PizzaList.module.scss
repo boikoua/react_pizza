@@ -1,0 +1,21 @@
+$title-color: #000;
+
+.title {
+  margin-bottom: 30px;
+  color: $title-color;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.pizzas {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+
+  margin: 0 auto;
+
+  @media (min-width: 768px) {
+    justify-content: flex-start;
+  }
+}

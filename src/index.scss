@@ -1,0 +1,28 @@
+$bg-main-color: #ffdf8c;
+
+$text-main-color: #000;
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  font-family: Nunito, Arial, Helvetica, sans-serif;
+  color: $text-main-color;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 15px;
+  background: $bg-main-color;
+
+  @media (min-width: 768px) {
+    padding: 20px;
+  }
+}
+
+li,
+ol {
+  list-style: none;
+}

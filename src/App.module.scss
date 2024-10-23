@@ -1,0 +1,14 @@
+$bg-app-color: #fff;
+
+.app {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: 10px;
+  background: $bg-app-color;
+  border-radius: 10px;
+  box-shadow: 0px 15px 20px 0px rgba(0, 0, 0, 0.03);
+
+  @media (min-width: 768px) {
+    padding-inline: 20px;
+  }
+}

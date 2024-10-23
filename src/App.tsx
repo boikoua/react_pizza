@@ -1,5 +1,14 @@
+import style from './App.module.scss';
+import Header from './components/Header';
+import Main from './components/Main';
+
 const App = () => {
-  return <div className="app"></div>;
+  return (
+    <div className={style.app}>
+      <Header />
+      <Main />
+    </div>
+  );
 };
 
 export default App;

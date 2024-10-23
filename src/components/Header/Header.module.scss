@@ -1,0 +1,8 @@
+$header-border-color: #f7f7f7;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 1px solid $header-border-color;
+}
