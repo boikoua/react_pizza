@@ -40,14 +40,16 @@ $option-color-active: #fe5f1e;
 .category {
   font-weight: 400;
   color: $category-color;
+  text-decoration: dotted;
+  cursor: pointer;
 }
 
 .popup {
-  display: none;
+  // display: none;
 
   position: absolute;
   right: 0;
-  bottom: -100px;
+  bottom: -110px;
 
   min-width: 130px;
   overflow: hidden;
@@ -56,7 +58,7 @@ $option-color-active: #fe5f1e;
   background: $popup-bg-color;
 
   @media (min-width: 768px) {
-    bottom: -140px;
+    bottom: -150px;
 
     min-width: 180px;
   }

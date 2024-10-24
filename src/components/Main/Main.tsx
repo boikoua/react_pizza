@@ -1,16 +1,21 @@
-import Category from '../Category';
+import Categories from '../Categories';
 import PizzaList from '../PizzaList';
 import Sort from '../Sort';
 import style from './Main.module.scss';
 
-const Main = () => {
+type Props = {
+  count: number;
+  onClick: () => void;
+};
+
+const Main: React.FC<Props> = ({ count, onClick }) => {
   return (
     <main className={style.main}>
       <section className={style.sort}>
-        <Category />
+        <Categories />
         <Sort />
       </section>
-      <PizzaList />
+      <PizzaList count={count} onClick={onClick} />
     </main>
   );
 };

@@ -1,6 +1,11 @@
 import style from './PizzaItem.module.scss';
 
-const PizzaItem = () => {
+type Props = {
+  count: number;
+  onClick: () => void;
+};
+
+const PizzaItem: React.FC<Props> = ({ count, onClick }) => {
   return (
     <article className={style.pizza}>
       <img className={style.img} src="./img/pizza.png" alt="Pizza" />
@@ -12,9 +17,9 @@ const PizzaItem = () => {
       </ul>
       <div className={style.footer}>
         <p className={style.price}>400 ₴</p>
-        <button className={style.btn}>
+        <button className={style.btn} onClick={onClick}>
           Додати
-          <span className={style.count}>2</span>
+          <span className={style.count}>{count}</span>
         </button>
       </div>
     </article>
