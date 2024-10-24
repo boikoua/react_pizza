@@ -1,0 +1,50 @@
+$text-color: #777777;
+$btn-bg-color: #282828;
+
+.cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  min-height: 70vh;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.title {
+  font-size: 26px;
+}
+
+.text {
+  color: $text-color;
+  font-size: 14px;
+  font-weight: 400;
+
+  @media (min-width: 768px) {
+    font-size: 18px;
+  }
+}
+
+.img {
+  width: 180px;
+
+  @media (min-width: 768px) {
+    width: 280px;
+  }
+}
+
+.btn {
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 30px;
+  border-radius: 30px;
+  background: $btn-bg-color;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0px 10px 15px 0px rgba(0, 0, 0, 0.29);
+  }
+}
