@@ -8,11 +8,12 @@ $option-color-active: #fe5f1e;
   display: flex;
   align-items: center;
   gap: 5px;
-
   position: relative;
+  width: 220px;
 
   @media (min-width: 768px) {
     gap: 10px;
+    width: 290px;
   }
 }
 
@@ -20,11 +21,16 @@ $option-color-active: #fe5f1e;
   width: 10px;
   height: 10px;
   transform: rotateX(180deg);
+  cursor: pointer;
 
   @media (min-width: 768px) {
     width: 20px;
     height: 20px;
   }
+}
+
+.reverse {
+  transform: rotateX(360deg);
 }
 
 .text {
@@ -45,7 +51,7 @@ $option-color-active: #fe5f1e;
 }
 
 .popup {
-  // display: none;
+  display: none;
 
   position: absolute;
   right: 0;
@@ -62,6 +68,10 @@ $option-color-active: #fe5f1e;
 
     min-width: 180px;
   }
+}
+
+.show {
+  display: block;
 }
 
 .option {

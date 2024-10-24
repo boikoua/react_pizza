@@ -1,16 +1,18 @@
-import { pizzasFromServer } from '../../api/pizzas';
+import { Pizza } from '../../types/Pizza';
 import PizzaItem from '../PizzaItem';
 import style from './PizzaList.module.scss';
 
-type Props = {};
+type Props = {
+  pizzas: Pizza[];
+};
 
-const PizzaList: React.FC<Props> = () => {
+const PizzaList: React.FC<Props> = ({ pizzas }) => {
   return (
     <section className={style.container}>
       <h2 className={style.title}>Усі піци</h2>
 
       <section className={style.pizzas}>
-        {pizzasFromServer.map((pizza) => (
+        {pizzas.map((pizza) => (
           <PizzaItem key={pizza.id} pizza={pizza} />
         ))}
       </section>
