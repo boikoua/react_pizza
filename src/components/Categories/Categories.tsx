@@ -4,16 +4,16 @@ import style from './Categories.module.scss';
 import cn from 'classnames';
 
 const Categories = () => {
-  const [selectCategory, setSelectCategory] = useState(0);
+  const [activeCategory, setActiveCategory] = useState(0);
 
   const handlerChangeCategory = (num: number) => {
-    setSelectCategory(num);
+    setActiveCategory(num);
   };
 
   const showCategories = categories.map((category, index) => (
     <li
       className={cn(style.category, {
-        [style.active]: selectCategory === index,
+        [style.active]: activeCategory === index,
       })}
       key={index}
       onClick={() => handlerChangeCategory(index)}

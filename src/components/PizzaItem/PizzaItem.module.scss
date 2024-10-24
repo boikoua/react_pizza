@@ -8,6 +8,7 @@ $btn-color-one: #eb5a1e;
 $btn-color-two: #fff;
 $count-color-one: #eb5a1e;
 $count-color-two: #fff;
+$desc-text-color: #777777;
 
 .pizza {
   display: flex;
@@ -50,9 +51,20 @@ $count-color-two: #fff;
   font-weight: 300;
 }
 
+.desc {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: $desc-text-color;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    font-size: 20px;
+  }
+}
+
 .size {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding: 5px 10px;
   width: 90%;
   border-radius: 10px;
