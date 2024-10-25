@@ -14,6 +14,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [sortValue, setSortValue] = useState(0);
   const [reverse, setReverse] = useState(false);
+  const [categoryValue, setCategoryValue] = useState(0);
 
   useEffect(() => {
     setIsError(false);
@@ -45,6 +46,12 @@ const App = () => {
 
   sortedPizzas = reverse ? sortedPizzas.reverse() : sortedPizzas;
 
+  if (categoryValue) {
+    sortedPizzas = sortedPizzas.filter(
+      (pizza) => pizza.category === categoryValue
+    );
+  }
+
   return (
     <div className={style.app}>
       <Header />
@@ -61,6 +68,8 @@ const App = () => {
                 reverse={reverse}
                 setReverse={setReverse}
                 isLoading={isLoading}
+                category={categoryValue}
+                setCategory={setCategoryValue}
               />
             }
           />
@@ -68,9 +77,6 @@ const App = () => {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       )}
-
-      {/* <CartPage /> */}
-      {/* <NotFoundPage /> */}
     </div>
   );
 };

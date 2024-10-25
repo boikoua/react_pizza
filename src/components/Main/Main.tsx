@@ -11,6 +11,8 @@ type Props = {
   reverse: boolean;
   setReverse: (val: boolean) => void;
   isLoading: boolean;
+  category: number;
+  setCategory: (val: number) => void;
 };
 
 const Main: React.FC<Props> = ({
@@ -20,11 +22,13 @@ const Main: React.FC<Props> = ({
   reverse,
   setReverse,
   isLoading,
+  category,
+  setCategory,
 }) => {
   return (
     <main className={style.main}>
       <section className={style.sort}>
-        <Categories />
+        <Categories category={category} setCategory={setCategory} />
         <Sort
           sort={sort}
           setSort={setSort}
