@@ -6,6 +6,7 @@ import Main from './components/Main';
 import NotFoundPage from './components/NotFoundPage';
 import { Pizza } from './types/Pizza';
 import ErrorPage from './components/ErrorPage';
+import { Route, Routes } from 'react-router-dom';
 
 const App = () => {
   const [pizzas, setPizzas] = useState<Pizza[]>([]);
@@ -49,14 +50,23 @@ const App = () => {
       <Header />
       {isError && <ErrorPage />}
       {!isError && (
-        <Main
-          pizzas={sortedPizzas}
-          sort={sortValue}
-          setSort={setSortValue}
-          reverse={reverse}
-          setReverse={setReverse}
-          isLoading={isLoading}
-        />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Main
+                pizzas={sortedPizzas}
+                sort={sortValue}
+                setSort={setSortValue}
+                reverse={reverse}
+                setReverse={setReverse}
+                isLoading={isLoading}
+              />
+            }
+          />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
       )}
 
       {/* <CartPage /> */}

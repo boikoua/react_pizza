@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import CartItem from '../CartItem';
 import style from './CartFull.module.scss';
 
@@ -26,7 +27,9 @@ const CartFull = () => {
         </p>
       </div>
       <div className={style.btns}>
-        <button className={style.back}>Повернутись назад</button>
+        <Link to="/" className={style.back}>
+          Повернутись назад
+        </Link>
         <button className={style.pay}>Сплатити замовлення</button>
       </div>
     </section>

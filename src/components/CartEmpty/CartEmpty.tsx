@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import style from './CartEmpty.module.scss';
 
 const CartEmpty = () => {
@@ -9,7 +10,9 @@ const CartEmpty = () => {
         ви можете повернутись на головну сторінку натиснувши кнопку нижче.
       </p>
       <img className={style.img} src="./img/empty-cart.png" alt="Empty" />
-      <button className={style.btn}>На головну</button>
+      <Link to="/" className={style.btn}>
+        На головну
+      </Link>
     </section>
   );
 };
