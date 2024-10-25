@@ -1,0 +1,39 @@
+$input-border-color: #f7f7f7;
+
+.search {
+  position: relative;
+  margin-inline: auto;
+  width: 80%;
+  background: transparent;
+
+  @media (min-width: 768px) {
+    width: 60%;
+  }
+
+  @media (min-width: 768px) {
+    width: 50%;
+  }
+}
+
+.input {
+  display: block;
+  width: 100%;
+  padding: 0 30px 5px 10px;
+  border-bottom: 1px solid $input-border-color;
+
+  @media (min-width: 768px) {
+    font-size: 20px;
+  }
+}
+
+.clear {
+  position: absolute;
+  top: 2px;
+  right: 8px;
+  width: 16px;
+  cursor: pointer;
+
+  @media (min-width: 768px) {
+    width: 20px;
+  }
+}

@@ -8,6 +8,7 @@ import { Pizza } from './types/Pizza';
 import ErrorPage from './components/ErrorPage';
 import { Route, Routes } from 'react-router-dom';
 import { sortValues } from './api/sort';
+import Search from './components/Search';
 
 const DATA_LINK = 'https://66eb10d955ad32cda47b9003.mockapi.io/items';
 
@@ -18,6 +19,7 @@ const App = () => {
   const [sortValue, setSortValue] = useState(0);
   const [reverse, setReverse] = useState(false);
   const [categoryValue, setCategoryValue] = useState(0);
+  const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
     setIsError(false);
@@ -27,7 +29,7 @@ const App = () => {
       fetch(
         `${DATA_LINK}?sortBy=${sortValues[sortValue].flag}&category=${
           categoryValue ? categoryValue : ''
-        }&order=${reverse ? 'desc' : ''}`
+        }&name=${searchValue}&order=${reverse ? 'desc' : ''}`
       )
         .then((res) => res.json())
         .then((data) => setPizzas(data))
@@ -38,11 +40,12 @@ const App = () => {
           setIsLoading(false);
         });
     }, 1000);
-  }, [sortValue, categoryValue, reverse]);
+  }, [sortValue, searchValue, categoryValue, reverse]);
 
   return (
     <div className={style.app}>
       <Header />
+      {!isError && <Search value={searchValue} setValue={setSearchValue} />}
       {isError && <ErrorPage />}
       {!isError && (
         <Routes>

@@ -4,5 +4,5 @@ export const categories = [
   { value: 2, name: 'Вегетаріанські' },
   { value: 3, name: 'Гриль' },
   { value: 4, name: 'Гострі' },
-  { value: 5, name: 'Закриті' },
+  { value: 5, name: 'Фірмові' },
 ];

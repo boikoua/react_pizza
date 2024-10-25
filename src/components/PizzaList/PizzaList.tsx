@@ -9,9 +9,9 @@ type Props = {
 };
 
 const PizzaList: React.FC<Props> = ({ pizzas, isLoading }) => {
-  const showPizzas = pizzas.map((pizza) => (
-    <PizzaItem key={pizza.id} pizza={pizza} />
-  ));
+  const showPizzas = Array.isArray(pizzas)
+    ? pizzas.map((pizza) => <PizzaItem key={pizza.id} pizza={pizza} />)
+    : [];
 
   const showSkeletons = [...new Array(4)].map((_, index) => (
     <Skeleton key={index} />
@@ -22,7 +22,13 @@ const PizzaList: React.FC<Props> = ({ pizzas, isLoading }) => {
       <h2 className={style.title}>Усі піци</h2>
 
       <section className={style.pizzas}>
-        {isLoading ? showSkeletons : showPizzas}
+        {isLoading ? (
+          showSkeletons
+        ) : Array.isArray(pizzas) && pizzas.length > 0 ? (
+          showPizzas
+        ) : (
+          <p className={style.error}>Нічого не знайдено...</p>
+        )}
       </section>
     </section>
   );

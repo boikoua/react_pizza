@@ -19,3 +19,16 @@ $title-color: #000;
     justify-content: flex-start;
   }
 }
+
+.error {
+  margin-inline: auto;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    font-size: 20px;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 32px;
+  }
+}
