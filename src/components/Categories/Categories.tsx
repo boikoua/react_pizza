@@ -8,15 +8,15 @@ type Props = {
 };
 
 const Categories: React.FC<Props> = ({ category, setCategory }) => {
-  const showCategories = categories.map((item, index) => (
+  const showCategories = categories.map((item) => (
     <li
       className={cn(style.category, {
-        [style.active]: category === index,
+        [style.active]: category === item.value,
       })}
-      key={index}
-      onClick={() => setCategory(index)}
+      key={item.value}
+      onClick={() => setCategory(item.value)}
     >
-      {item}
+      {item.name}
     </li>
   ));
 

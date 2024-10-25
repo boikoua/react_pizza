@@ -1,1 +1,5 @@
-export const sortValues = ['популярності', 'ціні', 'алфавіту'];
+export const sortValues = [
+  { title: 'популярності', flag: 'rating' },
+  { title: 'ціні', flag: 'price' },
+  { title: 'алфавіту', flag: 'name' },
+];

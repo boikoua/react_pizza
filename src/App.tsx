@@ -7,6 +7,9 @@ import NotFoundPage from './components/NotFoundPage';
 import { Pizza } from './types/Pizza';
 import ErrorPage from './components/ErrorPage';
 import { Route, Routes } from 'react-router-dom';
+import { sortValues } from './api/sort';
+
+const DATA_LINK = 'https://66eb10d955ad32cda47b9003.mockapi.io/items';
 
 const App = () => {
   const [pizzas, setPizzas] = useState<Pizza[]>([]);
@@ -21,7 +24,11 @@ const App = () => {
     setIsLoading(true);
 
     setTimeout(() => {
-      fetch('https://66eb10d955ad32cda47b9003.mockapi.io/items')
+      fetch(
+        `${DATA_LINK}?sortBy=${sortValues[sortValue].flag}&category=${
+          categoryValue ? categoryValue : ''
+        }&order=${reverse ? 'desc' : ''}`
+      )
         .then((res) => res.json())
         .then((data) => setPizzas(data))
         .catch(() => {
@@ -31,26 +38,7 @@ const App = () => {
           setIsLoading(false);
         });
     }, 1000);
-  }, []);
-
-  let sortedPizzas = [...pizzas].sort((p1, p2) => {
-    switch (sortValue) {
-      case 1:
-        return p1.price - p2.price;
-      case 2:
-        return p1.name.localeCompare(p2.name);
-      default:
-        return p2.rating - p1.rating;
-    }
-  });
-
-  sortedPizzas = reverse ? sortedPizzas.reverse() : sortedPizzas;
-
-  if (categoryValue) {
-    sortedPizzas = sortedPizzas.filter(
-      (pizza) => pizza.category === categoryValue
-    );
-  }
+  }, [sortValue, categoryValue, reverse]);
 
   return (
     <div className={style.app}>
@@ -62,7 +50,7 @@ const App = () => {
             path="/"
             element={
               <Main
-                pizzas={sortedPizzas}
+                pizzas={pizzas}
                 sort={sortValue}
                 setSort={setSortValue}
                 reverse={reverse}

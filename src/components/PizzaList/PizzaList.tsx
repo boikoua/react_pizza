@@ -13,7 +13,7 @@ const PizzaList: React.FC<Props> = ({ pizzas, isLoading }) => {
     <PizzaItem key={pizza.id} pizza={pizza} />
   ));
 
-  const showSkeletons = [...new Array(6)].map((_, index) => (
+  const showSkeletons = [...new Array(4)].map((_, index) => (
     <Skeleton key={index} />
   ));
 

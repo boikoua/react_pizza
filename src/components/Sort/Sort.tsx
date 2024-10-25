@@ -24,12 +24,12 @@ const Sort: React.FC<Props> = ({ sort, setSort, reverse, setReverse }) => {
       <p className={style.text}>
         Сортування по:{' '}
         <span className={style.category} onClick={() => setShow(!show)}>
-          {sortValues[sort]}
+          {sortValues[sort].title}
         </span>
       </p>
       {show && (
         <ul className={style.popup}>
-          {sortValues.map((value, index) => (
+          {sortValues.map((obj, index) => (
             <li
               className={style.option}
               key={index}
@@ -38,7 +38,7 @@ const Sort: React.FC<Props> = ({ sort, setSort, reverse, setReverse }) => {
                 setShow(false);
               }}
             >
-              {value}
+              {obj.title}
             </li>
           ))}
         </ul>
