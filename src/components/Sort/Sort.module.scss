@@ -46,13 +46,11 @@ $option-color-active: #fe5f1e;
 .category {
   font-weight: 400;
   color: $category-color;
-  text-decoration: dotted;
+  text-decoration: underline;
   cursor: pointer;
 }
 
 .popup {
-  display: none;
-
   position: absolute;
   right: 0;
   bottom: -110px;
@@ -68,10 +66,6 @@ $option-color-active: #fe5f1e;
 
     min-width: 180px;
   }
-}
-
-.show {
-  display: block;
 }
 
 .option {

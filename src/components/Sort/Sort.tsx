@@ -27,20 +27,22 @@ const Sort: React.FC<Props> = ({ sort, setSort, reverse, setReverse }) => {
           {sortValues[sort]}
         </span>
       </p>
-      <ul className={cn(style.popup, { [style.show]: show })}>
-        {sortValues.map((value, index) => (
-          <li
-            className={style.option}
-            key={index}
-            onClick={() => {
-              setSort(index);
-              setShow(false);
-            }}
-          >
-            {value}
-          </li>
-        ))}
-      </ul>
+      {show && (
+        <ul className={style.popup}>
+          {sortValues.map((value, index) => (
+            <li
+              className={style.option}
+              key={index}
+              onClick={() => {
+                setSort(index);
+                setShow(false);
+              }}
+            >
+              {value}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
