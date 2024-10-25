@@ -5,7 +5,6 @@ import Header from './components/Header';
 import Main from './components/Main';
 import NotFoundPage from './components/NotFoundPage';
 import { Pizza } from './types/Pizza';
-import { Loader } from './components/Loader';
 import ErrorPage from './components/ErrorPage';
 
 const App = () => {
@@ -48,15 +47,15 @@ const App = () => {
   return (
     <div className={style.app}>
       <Header />
-      {isLoading && !isError && <Loader />}
       {isError && <ErrorPage />}
-      {!isLoading && !isError && (
+      {!isError && (
         <Main
           pizzas={sortedPizzas}
           sort={sortValue}
           setSort={setSortValue}
           reverse={reverse}
           setReverse={setReverse}
+          isLoading={isLoading}
         />
       )}
 

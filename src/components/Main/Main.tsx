@@ -10,6 +10,7 @@ type Props = {
   setSort: (val: number) => void;
   reverse: boolean;
   setReverse: (val: boolean) => void;
+  isLoading: boolean;
 };
 
 const Main: React.FC<Props> = ({
@@ -18,6 +19,7 @@ const Main: React.FC<Props> = ({
   setSort,
   reverse,
   setReverse,
+  isLoading,
 }) => {
   return (
     <main className={style.main}>
@@ -30,7 +32,7 @@ const Main: React.FC<Props> = ({
           setReverse={setReverse}
         />
       </section>
-      <PizzaList pizzas={pizzas} />
+      <PizzaList pizzas={pizzas} isLoading={isLoading} />
     </main>
   );
 };
