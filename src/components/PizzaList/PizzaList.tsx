@@ -1,17 +1,19 @@
-import { Pizza } from '../../types/Pizza';
+import { useContext } from 'react';
 import Pagination from '../Pagination';
 import PizzaItem from '../PizzaItem';
 import Skeleton from '../Skeleton';
 import style from './PizzaList.module.scss';
+import { MainContext } from '../../context/mainContext';
 
-type Props = {
-  pizzas: Pizza[];
-  isLoading: boolean;
-  page: number;
-  setPage: (val: number) => void;
-};
+const PizzaList = () => {
+  // #region Context
+  const context = useContext(MainContext);
 
-const PizzaList: React.FC<Props> = ({ pizzas, isLoading, page, setPage }) => {
+  if (!context) return null;
+
+  const { pizzas, isLoading, page, setPage } = context;
+  // #endregion
+
   const showPizzas = Array.isArray(pizzas)
     ? pizzas.map((pizza) => <PizzaItem key={pizza.id} pizza={pizza} />)
     : [];

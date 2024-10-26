@@ -1,15 +1,18 @@
-import React from 'react';
+import { useContext } from 'react';
 import style from './Search.module.scss';
+import { SearchContext } from '../../context/searchContext';
 
-type Props = {
-  value: string;
-  setValue: (val: string) => void;
-  setPage: (val: number) => void;
-};
+const Search = () => {
+  // #region Context
+  const context = useContext(SearchContext);
 
-const Search: React.FC<Props> = ({ value, setValue, setPage }) => {
+  if (!context) return null;
+
+  const { searchValue, setSearchValue, setPage } = context;
+  // #endregion
+
   const handleChangeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
+    setSearchValue(event.target.value);
     setPage(1);
   };
 
@@ -19,15 +22,15 @@ const Search: React.FC<Props> = ({ value, setValue, setPage }) => {
         className={style.input}
         type="text"
         placeholder="Пошук піци..."
-        value={value}
+        value={searchValue}
         onChange={handleChangeSearch}
       />
-      {value && (
+      {searchValue && (
         <img
           className={style.clear}
           src="./img/clear.svg"
           alt="Clear"
-          onClick={() => setValue('')}
+          onClick={() => setSearchValue('')}
         />
       )}
     </div>

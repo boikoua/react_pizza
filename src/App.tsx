@@ -9,6 +9,8 @@ import ErrorPage from './components/ErrorPage';
 import { Route, Routes } from 'react-router-dom';
 import { sortValues } from './api/sort';
 import Search from './components/Search';
+import { SearchContext } from './context/searchContext';
+import { MainContext } from './context/mainContext';
 
 const DATA_LINK = 'https://66eb10d955ad32cda47b9003.mockapi.io/items';
 const LIMIT_COUNT = 4;
@@ -52,11 +54,11 @@ const App = () => {
     <div className={style.app}>
       <Header />
       {!isError && (
-        <Search
-          value={searchValue}
-          setValue={setSearchValue}
-          setPage={setPage}
-        />
+        <SearchContext.Provider
+          value={{ searchValue, setSearchValue, setPage }}
+        >
+          <Search />
+        </SearchContext.Provider>
       )}
       {isError && <ErrorPage />}
       {!isError && (
@@ -64,18 +66,22 @@ const App = () => {
           <Route
             path="/"
             element={
-              <Main
-                pizzas={pizzas}
-                sort={sortValue}
-                setSort={setSortValue}
-                reverse={reverse}
-                setReverse={setReverse}
-                isLoading={isLoading}
-                category={categoryValue}
-                setCategory={setCategoryValue}
-                page={page}
-                setPage={setPage}
-              />
+              <MainContext.Provider
+                value={{
+                  pizzas,
+                  sortValue,
+                  setSortValue,
+                  reverse,
+                  setReverse,
+                  isLoading,
+                  categoryValue,
+                  setCategoryValue,
+                  page,
+                  setPage,
+                }}
+              >
+                <Main />
+              </MainContext.Provider>
             }
           />
           <Route path="/cart" element={<CartPage />} />
