@@ -12,7 +12,6 @@ import Main from './components/Main';
 import NotFoundPage from './components/NotFoundPage';
 import ErrorPage from './components/ErrorPage';
 import Search from './components/Search';
-import axios from 'axios';
 
 const DATA_LINK = 'https://66eb10d955ad32cda47b9003.mockapi.io/items';
 const LIMIT_COUNT = 4;
@@ -37,9 +36,9 @@ const App = () => {
     }&limit=${LIMIT_COUNT}&page=${page}`;
 
     setTimeout(() => {
-      axios
-        .get(SEARCH_URL)
-        .then(({ data }) => {
+      fetch(SEARCH_URL)
+        .then((res) => res.json())
+        .then((data) => {
           setPizzas(data);
         })
         .catch(() => {
