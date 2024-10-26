@@ -4,6 +4,7 @@ import { sortValues } from './api/sort';
 import { Pizza } from './types/Pizza';
 import style from './App.module.scss';
 import { MainContext } from './context/mainContext';
+import { useAppSelector } from './redux/hooks';
 
 import CartPage from './components/CartPage';
 import Header from './components/Header';
@@ -11,7 +12,7 @@ import Main from './components/Main';
 import NotFoundPage from './components/NotFoundPage';
 import ErrorPage from './components/ErrorPage';
 import Search from './components/Search';
-import { useAppSelector } from './redux/hooks';
+import axios from 'axios';
 
 const DATA_LINK = 'https://66eb10d955ad32cda47b9003.mockapi.io/items';
 const LIMIT_COUNT = 4;
@@ -29,16 +30,16 @@ const App = () => {
     setIsError(false);
     setIsLoading(true);
 
+    const SEARCH_URL = `${DATA_LINK}?sortBy=${sortValues[sort].flag}&category=${
+      category ? category : ''
+    }&name=${search}&order=${
+      reverse ? 'desc' : ''
+    }&limit=${LIMIT_COUNT}&page=${page}`;
+
     setTimeout(() => {
-      fetch(
-        `${DATA_LINK}?sortBy=${sortValues[sort].flag}&category=${
-          category ? category : ''
-        }&name=${search}&order=${
-          reverse ? 'desc' : ''
-        }&limit=${LIMIT_COUNT}&page=${page}`
-      )
-        .then((res) => res.json())
-        .then((data) => {
+      axios
+        .get(SEARCH_URL)
+        .then(({ data }) => {
           setPizzas(data);
         })
         .catch(() => {
