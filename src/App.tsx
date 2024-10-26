@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { sortValues } from './api/sort';
+import { Pizza } from './types/Pizza';
 import style from './App.module.scss';
+import { SearchContext } from './context/searchContext';
+import { MainContext } from './context/mainContext';
+
 import CartPage from './components/CartPage';
 import Header from './components/Header';
 import Main from './components/Main';
 import NotFoundPage from './components/NotFoundPage';
-import { Pizza } from './types/Pizza';
 import ErrorPage from './components/ErrorPage';
-import { Route, Routes } from 'react-router-dom';
-import { sortValues } from './api/sort';
 import Search from './components/Search';
-import { SearchContext } from './context/searchContext';
-import { MainContext } from './context/mainContext';
 
 const DATA_LINK = 'https://66eb10d955ad32cda47b9003.mockapi.io/items';
 const LIMIT_COUNT = 4;
