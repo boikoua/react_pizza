@@ -32,7 +32,7 @@ const Search = () => {
       {search && (
         <img
           className={style.clear}
-          src="./img/clear.svg"
+          src={`${process.env.PUBLIC_URL}/img/clear.svg`}
           alt="Clear"
           onClick={handleClickClear}
         />

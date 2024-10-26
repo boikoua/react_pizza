@@ -38,7 +38,7 @@ const Sort = () => {
     <div className={style.sort}>
       <img
         className={cn(style.icon, { [style.reverse]: reverse })}
-        src="./img/sort-icon.png"
+        src={`${process.env.PUBLIC_URL}/img/sort-icon.png`}
         alt="Sort Direct"
         onClick={handleToggleReverse}
       />

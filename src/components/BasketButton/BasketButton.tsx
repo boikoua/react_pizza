@@ -7,7 +7,11 @@ const BasketButton = () => {
       <span className={style.price}>500 ₴</span>
       <span className={style.delimeter}></span>
       <div className={style.wrapper}>
-        <img className={style.icon} src="./img/basket-icon.png" alt="Basket" />
+        <img
+          className={style.icon}
+          src={`${process.env.PUBLIC_URL}/img/basket-icon.png`}
+          alt="Basket"
+        />
         <span className={style.count}>3</span>
       </div>
     </Link>

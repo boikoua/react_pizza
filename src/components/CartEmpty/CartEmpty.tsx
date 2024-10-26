@@ -9,7 +9,11 @@ const CartEmpty = () => {
         Ви ще не додали жодної піци для замовлення. Для того щоб це виправити,
         ви можете повернутись на головну сторінку натиснувши кнопку нижче.
       </p>
-      <img className={style.img} src="./img/empty-cart.png" alt="Empty" />
+      <img
+        className={style.img}
+        src={`${process.env.PUBLIC_URL}/img/empty-cart.png`}
+        alt="Empty"
+      />
       <Link to="/" className={style.btn}>
         На головну
       </Link>
