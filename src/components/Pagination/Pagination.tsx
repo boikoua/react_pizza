@@ -1,21 +1,22 @@
+import { setPage } from '../../redux/features/filterSlice';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import style from './Pagination.module.scss';
 import cn from 'classnames';
 
-type Props = {
-  page: number;
-  setPage: (val: number) => void;
-};
+const Pagination = () => {
+  const dispatch = useAppDispatch();
+  const { page } = useAppSelector((state) => state.filter);
 
-const Pagination: React.FC<Props> = ({ page, setPage }) => {
   const showPages = [...new Array(5)].map((_, index) => (
     <li
       className={cn(style.item, { [style.active]: page === index + 1 })}
       key={index + 1}
-      onClick={() => setPage(index + 1)}
+      onClick={() => dispatch(setPage(index + 1))}
     >
       {index + 1}
     </li>
   ));
+
   return <ul className={style.items}>{showPages}</ul>;
 };
 

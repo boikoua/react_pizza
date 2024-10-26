@@ -5,7 +5,7 @@ const Logo = () => {
   return (
     <div className={style.logo}>
       <Link to="/">
-        <img className={style.img} src="./img/logo.png" alt="Logo" />
+        <img className={style.img} src="./img/logo.svg" alt="Logo" />
       </Link>
       <div>
         <h3 className={style.title}>REACT PIZZA</h3>

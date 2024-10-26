@@ -1,27 +1,23 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { sortValues } from '../../api/sort';
 import style from './Sort.module.scss';
 import cn from 'classnames';
-import { MainContext } from '../../context/mainContext';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { setReverse, setSort } from '../../redux/features/filterSlice';
 
 const Sort = () => {
   const [show, setShow] = useState(false);
 
-  // #region Context
-  const context = useContext(MainContext);
-
-  if (!context) return null;
-
-  const { sortValue, setSortValue, reverse, setReverse } = context;
-  // #endregion
+  const dispatch = useAppDispatch();
+  const { sort, reverse } = useAppSelector((state) => state.filter);
 
   const handleChangeSort = (index: number) => {
-    setSortValue(index);
+    dispatch(setSort(index));
     setShow(false);
   };
 
   const handleToggleReverse = () => {
-    setReverse(!reverse);
+    dispatch(setReverse(!reverse));
   };
 
   const handleShowPopup = () => {
@@ -49,7 +45,7 @@ const Sort = () => {
       <p className={style.text}>
         Сортування по:{' '}
         <span className={style.category} onClick={handleShowPopup}>
-          {sortValues[sortValue].title}
+          {sortValues[sort].title}
         </span>
       </p>
       {show && <ul className={style.popup}>{showSort}</ul>}

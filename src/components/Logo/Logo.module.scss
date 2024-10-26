@@ -4,6 +4,10 @@ $slogan-color: #7b7b7b;
   display: flex;
   align-items: center;
   gap: 5px;
+
+  @media (min-width: 768px) {
+    gap: 20px;
+  }
 }
 
 .img {
@@ -11,8 +15,8 @@ $slogan-color: #7b7b7b;
   width: 28px;
 
   @media (min-width: 768px) {
-    height: 44px;
-    width: 44px;
+    height: 54px;
+    width: 54px;
   }
 }
 

@@ -1,27 +1,22 @@
-import { useContext } from 'react';
 import { categories } from '../../api/categories';
 import style from './Categories.module.scss';
 import cn from 'classnames';
-import { MainContext } from '../../context/mainContext';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { setCategory, setPage } from '../../redux/features/filterSlice';
 
 const Categories = () => {
-  // #region Context
-  const context = useContext(MainContext);
-
-  if (!context) return null;
-
-  const { categoryValue, setCategoryValue, setPage } = context;
-  // #endregion
+  const dispatch = useAppDispatch();
+  const { category } = useAppSelector((state) => state.filter);
 
   const handleChangeCategory = (value: number) => {
-    setCategoryValue(value);
-    setPage(1);
+    dispatch(setCategory(value));
+    dispatch(setPage(1));
   };
 
   const showCategories = categories.map((item) => (
     <li
       className={cn(style.category, {
-        [style.active]: categoryValue === item.value,
+        [style.active]: category === item.value,
       })}
       key={item.value}
       onClick={() => handleChangeCategory(item.value)}

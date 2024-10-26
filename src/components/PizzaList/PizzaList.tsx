@@ -11,7 +11,7 @@ const PizzaList = () => {
 
   if (!context) return null;
 
-  const { pizzas, isLoading, page, setPage } = context;
+  const { pizzas, isLoading } = context;
   // #endregion
 
   const showPizzas = Array.isArray(pizzas)
@@ -36,9 +36,7 @@ const PizzaList = () => {
         )}
       </section>
 
-      {Array.isArray(pizzas) && pizzas.length > 0 && (
-        <Pagination page={page} setPage={setPage} />
-      )}
+      {Array.isArray(pizzas) && pizzas.length > 0 && <Pagination />}
     </section>
   );
 };
