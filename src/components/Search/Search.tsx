@@ -4,9 +4,15 @@ import style from './Search.module.scss';
 type Props = {
   value: string;
   setValue: (val: string) => void;
+  setPage: (val: number) => void;
 };
 
-const Search: React.FC<Props> = ({ value, setValue }) => {
+const Search: React.FC<Props> = ({ value, setValue, setPage }) => {
+  const handleChangeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
+    setPage(1);
+  };
+
   return (
     <div className={style.search}>
       <input
@@ -14,7 +20,7 @@ const Search: React.FC<Props> = ({ value, setValue }) => {
         type="text"
         placeholder="Пошук піци..."
         value={value}
-        onChange={(event) => setValue(event.target.value)}
+        onChange={handleChangeSearch}
       />
       {value && (
         <img

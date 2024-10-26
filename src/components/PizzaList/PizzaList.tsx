@@ -1,4 +1,5 @@
 import { Pizza } from '../../types/Pizza';
+import Pagination from '../Pagination';
 import PizzaItem from '../PizzaItem';
 import Skeleton from '../Skeleton';
 import style from './PizzaList.module.scss';
@@ -6,9 +7,11 @@ import style from './PizzaList.module.scss';
 type Props = {
   pizzas: Pizza[];
   isLoading: boolean;
+  page: number;
+  setPage: (val: number) => void;
 };
 
-const PizzaList: React.FC<Props> = ({ pizzas, isLoading }) => {
+const PizzaList: React.FC<Props> = ({ pizzas, isLoading, page, setPage }) => {
   const showPizzas = Array.isArray(pizzas)
     ? pizzas.map((pizza) => <PizzaItem key={pizza.id} pizza={pizza} />)
     : [];
@@ -30,6 +33,10 @@ const PizzaList: React.FC<Props> = ({ pizzas, isLoading }) => {
           <p className={style.error}>Нічого не знайдено...</p>
         )}
       </section>
+
+      {Array.isArray(pizzas) && pizzas.length > 0 && (
+        <Pagination page={page} setPage={setPage} />
+      )}
     </section>
   );
 };

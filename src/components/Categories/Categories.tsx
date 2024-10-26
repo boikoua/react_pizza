@@ -5,16 +5,22 @@ import cn from 'classnames';
 type Props = {
   category: number;
   setCategory: (val: number) => void;
+  setPage: (val: number) => void;
 };
 
-const Categories: React.FC<Props> = ({ category, setCategory }) => {
+const Categories: React.FC<Props> = ({ category, setCategory, setPage }) => {
+  const handleChangeCategory = (value: number) => {
+    setCategory(value);
+    setPage(1);
+  };
+
   const showCategories = categories.map((item) => (
     <li
       className={cn(style.category, {
         [style.active]: category === item.value,
       })}
       key={item.value}
-      onClick={() => setCategory(item.value)}
+      onClick={() => handleChangeCategory(item.value)}
     >
       {item.name}
     </li>

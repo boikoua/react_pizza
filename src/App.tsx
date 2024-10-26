@@ -11,6 +11,7 @@ import { sortValues } from './api/sort';
 import Search from './components/Search';
 
 const DATA_LINK = 'https://66eb10d955ad32cda47b9003.mockapi.io/items';
+const LIMIT_COUNT = 4;
 
 const App = () => {
   const [pizzas, setPizzas] = useState<Pizza[]>([]);
@@ -20,6 +21,7 @@ const App = () => {
   const [reverse, setReverse] = useState(false);
   const [categoryValue, setCategoryValue] = useState(0);
   const [searchValue, setSearchValue] = useState('');
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     setIsError(false);
@@ -29,10 +31,14 @@ const App = () => {
       fetch(
         `${DATA_LINK}?sortBy=${sortValues[sortValue].flag}&category=${
           categoryValue ? categoryValue : ''
-        }&name=${searchValue}&order=${reverse ? 'desc' : ''}`
+        }&name=${searchValue}&order=${
+          reverse ? 'desc' : ''
+        }&limit=${LIMIT_COUNT}&page=${page}`
       )
         .then((res) => res.json())
-        .then((data) => setPizzas(data))
+        .then((data) => {
+          setPizzas(data);
+        })
         .catch(() => {
           setIsError(true);
         })
@@ -40,12 +46,18 @@ const App = () => {
           setIsLoading(false);
         });
     }, 1000);
-  }, [sortValue, searchValue, categoryValue, reverse]);
+  }, [sortValue, searchValue, categoryValue, reverse, page]);
 
   return (
     <div className={style.app}>
       <Header />
-      {!isError && <Search value={searchValue} setValue={setSearchValue} />}
+      {!isError && (
+        <Search
+          value={searchValue}
+          setValue={setSearchValue}
+          setPage={setPage}
+        />
+      )}
       {isError && <ErrorPage />}
       {!isError && (
         <Routes>
@@ -61,6 +73,8 @@ const App = () => {
                 isLoading={isLoading}
                 category={categoryValue}
                 setCategory={setCategoryValue}
+                page={page}
+                setPage={setPage}
               />
             }
           />
