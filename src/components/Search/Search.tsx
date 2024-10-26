@@ -1,20 +1,31 @@
 import style from './Search.module.scss';
 import { setPage, setSearch } from '../../redux/features/filterSlice';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { useRef } from 'react';
+import { useAppDispatch } from '../../redux/hooks';
+import { useCallback, useRef, useState } from 'react';
+import debounce from 'lodash.debounce';
 
 const Search = () => {
+  const [value, setValue] = useState('');
+
   const dispatch = useAppDispatch();
-  const search = useAppSelector((state) => state.filter.search);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const updateSearch = useCallback(
+    debounce((value) => {
+      dispatch(setSearch(value));
+    }, 1000),
+    []
+  );
+
   const handleChangeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setSearch(event.target.value));
+    setValue(event.target.value);
+    updateSearch(event.target.value);
     dispatch(setPage(1));
   };
 
   const handleClickClear = () => {
+    setValue('');
     dispatch(setSearch(''));
     inputRef.current?.focus();
   };
@@ -26,10 +37,10 @@ const Search = () => {
         type="text"
         placeholder="Пошук піци..."
         ref={inputRef}
-        value={search}
+        value={value}
         onChange={handleChangeSearch}
       />
-      {search && (
+      {value && (
         <img
           className={style.clear}
           src={`${process.env.PUBLIC_URL}/img/clear.svg`}
