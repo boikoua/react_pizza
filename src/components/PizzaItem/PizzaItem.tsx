@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Pizza } from '../../types/Pizza';
 import style from './PizzaItem.module.scss';
 import cn from 'classnames';
+import { useDispatch } from 'react-redux';
+import { add } from '../../redux/features/cartSlice';
 
 type Props = {
   pizza: Pizza;
@@ -9,10 +11,15 @@ type Props = {
 
 const PizzaItem: React.FC<Props> = ({ pizza }) => {
   const { imageUrl, name, sizes, price, desc } = pizza;
-
   const [activeSize, setActiveSize] = useState(0);
-
   const [count, setCount] = useState(0);
+
+  const dispatch = useDispatch();
+
+  const handleAddPizza = (pizza: Pizza) => {
+    setCount(count + 1);
+    dispatch(add(pizza));
+  };
 
   return (
     <article className={style.pizza}>
@@ -34,7 +41,7 @@ const PizzaItem: React.FC<Props> = ({ pizza }) => {
       </ul>
       <div className={style.footer}>
         <p className={style.price}>{price} ₴</p>
-        <button className={style.btn} onClick={() => setCount(count + 1)}>
+        <button className={style.btn} onClick={() => handleAddPizza(pizza)}>
           Додати
           <span className={style.count}>{count}</span>
         </button>

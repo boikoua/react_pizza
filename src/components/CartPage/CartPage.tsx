@@ -1,8 +1,11 @@
+import { useAppSelector } from '../../redux/hooks';
 import CartEmpty from '../CartEmpty';
 import CartFull from '../CartFull';
 
 const CartPage = () => {
-  return <>{false ? <CartFull /> : <CartEmpty />}</>;
+  const { cart } = useAppSelector((state) => state.cart);
+
+  return <>{cart.length !== 0 ? <CartFull /> : <CartEmpty />}</>;
 };
 
 export default CartPage;
