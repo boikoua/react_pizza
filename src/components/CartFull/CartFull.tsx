@@ -20,9 +20,9 @@ const CartFull = () => {
     new Map(cart.map((pizza) => [pizza.id, pizza])).values()
   );
 
-  const showPizzas = uniqPizza.map((pizza) => (
-    <CartItem key={pizza.id} pizza={pizza} />
-  ));
+  const showPizzas = [...uniqPizza]
+    .sort((p1, p2) => p1.name.localeCompare(p2.name))
+    .map((pizza) => <CartItem key={pizza.id} pizza={pizza} />);
 
   return (
     <section className={style.cart}>

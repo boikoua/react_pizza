@@ -53,7 +53,6 @@ const App = () => {
   return (
     <div className={style.app}>
       <Header />
-      {!isError && <Search />}
       {isError && <ErrorPage />}
       {!isError && (
         <Routes>
@@ -64,6 +63,7 @@ const App = () => {
                 value={{
                   pizzas,
                   isLoading,
+                  isError,
                 }}
               >
                 <Main />
