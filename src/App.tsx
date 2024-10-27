@@ -1,75 +1,42 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from './redux/hooks';
 import { sortValues } from './api/sort';
-import { Pizza } from './types/Pizza';
+import { fetchData } from './redux/features/pizzaSlice';
 import style from './App.module.scss';
-import { MainContext } from './context/mainContext';
-import { useAppSelector } from './redux/hooks';
 
 import CartPage from './components/CartPage';
 import Header from './components/Header';
 import Main from './components/Main';
 import NotFoundPage from './components/NotFoundPage';
 import ErrorPage from './components/ErrorPage';
-import Search from './components/Search';
-
-const DATA_LINK = 'https://66eb10d955ad32cda47b9003.mockapi.io/items';
-const LIMIT_COUNT = 4;
 
 const App = () => {
-  const [pizzas, setPizzas] = useState<Pizza[]>([]);
-  const [isError, setIsError] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-
+  const dispatch = useAppDispatch();
+  const { error } = useAppSelector((state) => state.pizza);
   const { search, page, category, sort, reverse } = useAppSelector(
     (state) => state.filter
   );
 
   useEffect(() => {
-    setIsError(false);
-    setIsLoading(true);
-
-    const SEARCH_URL = `${DATA_LINK}?sortBy=${sortValues[sort].flag}&category=${
-      category ? category : ''
-    }&name=${search}&order=${
-      reverse ? 'desc' : ''
-    }&limit=${LIMIT_COUNT}&page=${page}`;
-
-    setTimeout(() => {
-      fetch(SEARCH_URL)
-        .then((res) => res.json())
-        .then((data) => {
-          setPizzas(data);
-        })
-        .catch(() => {
-          setIsError(true);
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
-    }, 1000);
-  }, [sort, search, category, reverse, page]);
+    dispatch(
+      fetchData({
+        sort: sortValues[sort].flag,
+        category,
+        search,
+        reverse,
+        page,
+      })
+    );
+  }, [dispatch, sort, search, category, reverse, page]);
 
   return (
     <div className={style.app}>
       <Header />
-      {isError && <ErrorPage />}
-      {!isError && (
+      {error && <ErrorPage />}
+      {!error && (
         <Routes>
-          <Route
-            path="/"
-            element={
-              <MainContext.Provider
-                value={{
-                  pizzas,
-                  isLoading,
-                  isError,
-                }}
-              >
-                <Main />
-              </MainContext.Provider>
-            }
-          />
+          <Route path="/" element={<Main />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
