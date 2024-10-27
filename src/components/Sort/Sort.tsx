@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { sortValues } from '../../api/sort';
 import style from './Sort.module.scss';
 import cn from 'classnames';
@@ -7,6 +7,24 @@ import { setReverse, setSort } from '../../redux/features/filterSlice';
 
 const Sort = () => {
   const [show, setShow] = useState(false);
+
+  const sortRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const closePopupFunc = (event: MouseEvent) => {
+      if (sortRef.current) {
+        if (!event.composedPath().includes(sortRef.current)) {
+          setShow(false);
+        }
+      }
+    };
+
+    document.body.addEventListener('click', closePopupFunc);
+
+    return () => {
+      document.body.removeEventListener('click', closePopupFunc);
+    };
+  }, []);
 
   const dispatch = useAppDispatch();
   const { sort, reverse } = useAppSelector((state) => state.filter);
@@ -35,7 +53,7 @@ const Sort = () => {
   ));
 
   return (
-    <div className={style.sort}>
+    <div className={style.sort} ref={sortRef}>
       <img
         className={cn(style.icon, { [style.reverse]: reverse })}
         src={`${process.env.PUBLIC_URL}/img/sort-icon.png`}
