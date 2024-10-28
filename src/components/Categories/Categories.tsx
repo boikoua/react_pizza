@@ -2,11 +2,15 @@ import { categories } from '../../api/categories';
 import style from './Categories.module.scss';
 import cn from 'classnames';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { setCategory, setPage } from '../../redux/features/filterSlice';
+import {
+  filterSelector,
+  setCategory,
+  setPage,
+} from '../../redux/features/filterSlice';
 
 const Categories = () => {
   const dispatch = useAppDispatch();
-  const { category } = useAppSelector((state) => state.filter);
+  const { category } = useAppSelector(filterSelector);
 
   const handleChangeCategory = (value: number) => {
     dispatch(setCategory(value));

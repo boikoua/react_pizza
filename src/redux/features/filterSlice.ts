@@ -38,6 +38,8 @@ export const filterSlice = createSlice({
   },
 });
 
+export const filterSelector = (state: { filter: State }) => state.filter;
+
 export const { setSort, setReverse, setCategory, setSearch, setPage } =
   filterSlice.actions;
 

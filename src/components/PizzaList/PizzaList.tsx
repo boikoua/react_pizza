@@ -3,9 +3,10 @@ import PizzaItem from '../PizzaItem';
 import Skeleton from '../Skeleton';
 import style from './PizzaList.module.scss';
 import { useAppSelector } from '../../redux/hooks';
+import { pizzaSelector } from '../../redux/features/pizzaSlice';
 
 const PizzaList = () => {
-  const { pizzas, loading } = useAppSelector((state) => state.pizza);
+  const { pizzas, loading } = useAppSelector(pizzaSelector);
 
   const showPizzas = Array.isArray(pizzas)
     ? pizzas.map((pizza) => <PizzaItem key={pizza.id} pizza={pizza} />)

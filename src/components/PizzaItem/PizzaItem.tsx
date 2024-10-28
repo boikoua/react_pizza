@@ -3,7 +3,7 @@ import { Pizza } from '../../types/Pizza';
 import style from './PizzaItem.module.scss';
 import cn from 'classnames';
 import { useDispatch } from 'react-redux';
-import { add } from '../../redux/features/cartSlice';
+import { add, cartSelector } from '../../redux/features/cartSlice';
 import { useAppSelector } from '../../redux/hooks';
 
 type Props = {
@@ -15,7 +15,7 @@ const PizzaItem: React.FC<Props> = ({ pizza }) => {
   const [activeSize, setActiveSize] = useState(0);
 
   const dispatch = useDispatch();
-  const { cart } = useAppSelector((state) => state.cart);
+  const { cart } = useAppSelector(cartSelector);
 
   const handleAddPizza = (pizza: Pizza) => {
     dispatch(add(pizza));

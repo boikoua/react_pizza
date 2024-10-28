@@ -1,13 +1,19 @@
-import { setPage } from '../../redux/features/filterSlice';
+import { dataSelector } from '../../redux/features/dataSlice';
+import { filterSelector, setPage } from '../../redux/features/filterSlice';
+import { pizzaSelector } from '../../redux/features/pizzaSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import style from './Pagination.module.scss';
 import cn from 'classnames';
 
 const Pagination = () => {
   const dispatch = useAppDispatch();
-  const { page } = useAppSelector((state) => state.filter);
+  const { page } = useAppSelector(filterSelector);
+  const data = useAppSelector(dataSelector);
+  const { limit } = useAppSelector(pizzaSelector);
 
-  const showPages = [...new Array(5)].map((_, index) => (
+  const countPages = Math.ceil(data.length / limit);
+
+  const showPages = [...new Array(countPages)].map((_, index) => (
     <li
       className={cn(style.item, { [style.active]: page === index + 1 })}
       key={index + 1}

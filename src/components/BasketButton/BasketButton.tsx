@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
 import style from './BasketButton.module.scss';
 import { useAppSelector } from '../../redux/hooks';
+import { cartSelector } from '../../redux/features/cartSlice';
 
 const BasketButton = () => {
-  const { cart } = useAppSelector((state) => state.cart);
+  const { cart } = useAppSelector(cartSelector);
 
   const totalPrice =
     cart.length > 0 ? cart.reduce((acc, item) => acc + item.price, 0) : 0;

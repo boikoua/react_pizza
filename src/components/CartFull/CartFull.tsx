@@ -2,12 +2,12 @@ import { Link } from 'react-router-dom';
 import CartItem from '../CartItem';
 import style from './CartFull.module.scss';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { clear } from '../../redux/features/cartSlice';
+import { cartSelector, clear } from '../../redux/features/cartSlice';
 import { Pizza } from '../../types/Pizza';
 
 const CartFull = () => {
   const dispatch = useAppDispatch();
-  const { cart } = useAppSelector((state) => state.cart);
+  const { cart } = useAppSelector(cartSelector);
 
   const totalPrice =
     cart.length > 0 ? cart.reduce((acc, item) => acc + item.price, 0) : 0;

@@ -4,9 +4,10 @@ import Search from '../Search';
 import Sort from '../Sort';
 import style from './Main.module.scss';
 import { useAppSelector } from '../../redux/hooks';
+import { pizzaSelector } from '../../redux/features/pizzaSlice';
 
 const Main = () => {
-  const { error } = useAppSelector((state) => state.pizza);
+  const { error } = useAppSelector(pizzaSelector);
 
   return (
     <main className={style.main}>

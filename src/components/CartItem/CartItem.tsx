@@ -1,4 +1,4 @@
-import { add, remove, removeOne } from '../../redux/features/cartSlice';
+import { add, cartSelector, remove, removeOne } from '../../redux/features/cartSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { Pizza } from '../../types/Pizza';
 import style from './CartItem.module.scss';
@@ -9,7 +9,7 @@ type Props = {
 
 const CartItem: React.FC<Props> = ({ pizza }) => {
   const dispatch = useAppDispatch();
-  const { cart } = useAppSelector((state) => state.cart);
+  const { cart } = useAppSelector(cartSelector);
 
   const { id, name, price } = pizza;
 

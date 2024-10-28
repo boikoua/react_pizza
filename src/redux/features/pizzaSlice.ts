@@ -11,36 +11,36 @@ interface FetchParams {
   page: number;
 }
 
-export const fetchData = createAsyncThunk(
-  'pizza/fetch',
-  async (params: FetchParams) => {
-    const { sort, category, search, reverse, page } = params;
-
-    const LIMIT_COUNT = 4;
-
-    const SEARCH_URL = `${DATA_LINK}?sortBy=${sort}&category=${
-      category ? category : ''
-    }&name=${search}&order=${
-      reverse ? 'desc' : ''
-    }&limit=${LIMIT_COUNT}&page=${page}`;
-
-    const response = await fetch(SEARCH_URL);
-    const data = await response.json();
-    return data as Pizza[];
-  }
-);
-
 interface State {
   pizzas: Pizza[];
   error: boolean;
   loading: boolean;
+  limit: number;
 }
 
 const initialState: State = {
   pizzas: [],
   error: false,
   loading: true,
+  limit: 4,
 };
+
+export const fetchData = createAsyncThunk(
+  'pizza/fetch',
+  async (params: FetchParams) => {
+    const { sort, category, search, reverse, page } = params;
+
+    const SEARCH_URL = `${DATA_LINK}?sortBy=${sort}&category=${
+      category ? category : ''
+    }&name=${search}&order=${reverse ? 'desc' : ''}&limit=${
+      initialState.limit
+    }&page=${page}`;
+
+    const response = await fetch(SEARCH_URL);
+    const data = await response.json();
+    return data as Pizza[];
+  }
+);
 
 export const pizzaSlice = createSlice({
   name: 'pizza',
@@ -64,5 +64,7 @@ export const pizzaSlice = createSlice({
     });
   },
 });
+
+export const pizzaSelector = (state: { pizza: State }) => state.pizza;
 
 export default pizzaSlice.reducer;

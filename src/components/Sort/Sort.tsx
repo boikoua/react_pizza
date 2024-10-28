@@ -3,7 +3,11 @@ import { sortValues } from '../../api/sort';
 import style from './Sort.module.scss';
 import cn from 'classnames';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { setReverse, setSort } from '../../redux/features/filterSlice';
+import {
+  filterSelector,
+  setReverse,
+  setSort,
+} from '../../redux/features/filterSlice';
 
 const Sort = () => {
   const [show, setShow] = useState(false);
@@ -27,7 +31,7 @@ const Sort = () => {
   }, []);
 
   const dispatch = useAppDispatch();
-  const { sort, reverse } = useAppSelector((state) => state.filter);
+  const { sort, reverse } = useAppSelector(filterSelector);
 
   const handleChangeSort = (index: number) => {
     dispatch(setSort(index));
