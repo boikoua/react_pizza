@@ -53,6 +53,6 @@ export const dataSlice = createSlice({
   },
 });
 
-export const dataSelector = (state: { data: State }) => state.data.items;
+export const dataSelector = (state: { data: State }) => state.data;
 
 export default dataSlice.reducer;

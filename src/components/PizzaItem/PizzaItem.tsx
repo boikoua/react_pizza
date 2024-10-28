@@ -5,6 +5,7 @@ import cn from 'classnames';
 import { useDispatch } from 'react-redux';
 import { add, cartSelector } from '../../redux/features/cartSlice';
 import { useAppSelector } from '../../redux/hooks';
+import { Link } from 'react-router-dom';
 
 type Props = {
   pizza: Pizza;
@@ -37,7 +38,10 @@ const PizzaItem: React.FC<Props> = ({ pizza }) => {
 
   return (
     <article className={style.pizza}>
-      <img className={style.img} src={imageUrl} alt="Pizza" />
+      <Link className={style.link} to={`/pizza/${id}`}>
+        <img className={style.img} src={imageUrl} alt="Pizza" />
+      </Link>
+
       <h3 className={style.title}>{name}</h3>
       <p className={style.desc}>{desc}</p>
       <ul className={style.size}>{showSizes}</ul>

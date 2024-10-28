@@ -1,23 +1,29 @@
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import style from './FullPizza.module.scss';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { dataSelector, fetchAllData } from '../../redux/features/dataSlice';
-import { useEffect } from 'react';
 import { filterSelector } from '../../redux/features/filterSlice';
+import ErrorPage from '../ErrorPage';
 
 const FullPizza = () => {
-  const { id } = useParams();
   const dispatch = useAppDispatch();
-  const data = useAppSelector(dataSelector);
+  const { items, status } = useAppSelector(dataSelector);
   const { category, search } = useAppSelector(filterSelector);
+
+  const { id } = useParams();
 
   useEffect(() => {
     dispatch(fetchAllData({ category, search }));
   }, [dispatch, category, search]);
 
-  const pizza = data.find((p) => String(p.id) === id);
+  const pizza = items.find((p) => String(p.id) === id);
 
-  return <div>FullPizza {pizza?.name}</div>;
+  return status !== 'error' ? (
+    <div>FullPizza {pizza?.name}</div>
+  ) : (
+    <ErrorPage />
+  );
 };
 
 export default FullPizza;

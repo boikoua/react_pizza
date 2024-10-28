@@ -8,10 +8,10 @@ import cn from 'classnames';
 const Pagination = () => {
   const dispatch = useAppDispatch();
   const { page } = useAppSelector(filterSelector);
-  const data = useAppSelector(dataSelector);
+  const { items } = useAppSelector(dataSelector);
   const { limit } = useAppSelector(pizzaSelector);
 
-  const countPages = Math.ceil(data.length / limit);
+  const countPages = Math.ceil(items.length / limit);
 
   const showPages = [...new Array(countPages)].map((_, index) => (
     <li

@@ -41,6 +41,11 @@ $desc-text-color: #777777;
   }
 }
 
+.link {
+  display: flex;
+  justify-content: center;
+}
+
 .img {
   width: 90%;
 }

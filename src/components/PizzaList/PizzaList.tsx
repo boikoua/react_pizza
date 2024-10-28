@@ -18,7 +18,7 @@ const PizzaList = () => {
 
   return (
     <section className={style.container}>
-      <h2 className={style.title}>Усі піци</h2>
+      <h2 className={style.title}>Доступні піци</h2>
 
       <section className={style.pizzas}>
         {loading ? (
