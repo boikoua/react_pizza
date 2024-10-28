@@ -71,36 +71,6 @@ $desc-text-color: #777777;
   }
 }
 
-.size {
-  display: flex;
-  justify-content: space-evenly;
-  padding: 5px 10px;
-  width: 90%;
-  border-radius: 10px;
-  background: $size-bg-color;
-}
-
-.radius {
-  padding: 5px 10px;
-  color: $radius-color;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.3s ease;
-
-  &:hover {
-    border-radius: 5px;
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
-    background: $radius-bg-hover;
-  }
-}
-
-.active {
-  border-radius: 5px;
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
-  background: $radius-bg-hover;
-}
-
 .footer {
   display: flex;
   align-items: center;
