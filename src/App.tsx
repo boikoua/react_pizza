@@ -13,6 +13,7 @@ import Main from './components/Main';
 import NotFoundPage from './components/NotFoundPage';
 import ErrorPage from './components/ErrorPage';
 import FullPizza from './components/FullPizza/FullPizza';
+import Form from './components/Form';
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -55,6 +56,7 @@ const App = () => {
           <Route path="/" element={<Main />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/pizza/:id" element={<FullPizza />} />
+          <Route path="/form" element={<Form />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       )}

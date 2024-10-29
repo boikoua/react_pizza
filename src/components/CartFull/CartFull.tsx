@@ -52,7 +52,9 @@ const CartFull = () => {
         <Link to="/" className={style.back}>
           Повернутись назад
         </Link>
-        <button className={style.pay}>Сплатити замовлення</button>
+        <Link to="/form" className={style.pay}>
+          Сплатити замовлення
+        </Link>
       </div>
     </section>
   );
