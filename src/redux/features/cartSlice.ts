@@ -1,12 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Pizza } from '../../types/Pizza';
+import { getCartFromLS } from '../../utils/getCartFromLS';
 
 interface State {
   cart: Pizza[];
 }
 
 const initialState: State = {
-  cart: [],
+  cart: getCartFromLS(),
 };
 
 export const cartSlice = createSlice({

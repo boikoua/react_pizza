@@ -2,10 +2,21 @@ import { Link } from 'react-router-dom';
 import style from './BasketButton.module.scss';
 import { useAppSelector } from '../../redux/hooks';
 import { cartSelector } from '../../redux/features/cartSlice';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const BasketButton = React.memo(() => {
   const { cart } = useAppSelector(cartSelector);
+
+  const isMounted = useRef(false);
+
+  useEffect(() => {
+    if (isMounted.current) {
+      const json = JSON.stringify(cart);
+      localStorage.setItem('cart', json);
+    }
+
+    isMounted.current = true;
+  }, [cart]);
 
   const totalPrice =
     cart.length > 0 ? cart.reduce((acc, item) => acc + item.price, 0) : 0;
