@@ -1,3 +1,4 @@
+import React from 'react';
 import { dataSelector } from '../../redux/features/dataSlice';
 import { filterSelector, setPage } from '../../redux/features/filterSlice';
 import { pizzaSelector } from '../../redux/features/pizzaSlice';
@@ -5,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import style from './Pagination.module.scss';
 import cn from 'classnames';
 
-const Pagination = () => {
+const Pagination = React.memo(() => {
   const dispatch = useAppDispatch();
   const { page } = useAppSelector(filterSelector);
   const { items } = useAppSelector(dataSelector);
@@ -24,6 +25,6 @@ const Pagination = () => {
   ));
 
   return <ul className={style.items}>{showPages}</ul>;
-};
+});
 
 export default Pagination;

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { sortValues } from '../../api/sort';
 import style from './Sort.module.scss';
 import cn from 'classnames';
@@ -9,7 +9,7 @@ import {
   setSort,
 } from '../../redux/features/filterSlice';
 
-const Sort = () => {
+const Sort = React.memo(() => {
   const [show, setShow] = useState(false);
 
   const sortRef = useRef<HTMLDivElement | null>(null);
@@ -73,6 +73,6 @@ const Sort = () => {
       {show && <ul className={style.popup}>{showSort}</ul>}
     </div>
   );
-};
+});
 
 export default Sort;

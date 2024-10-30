@@ -7,15 +7,19 @@ import {
   setCategory,
   setPage,
 } from '../../redux/features/filterSlice';
+import React, { useCallback } from 'react';
 
-const Categories = () => {
+const Categories = React.memo(() => {
   const dispatch = useAppDispatch();
   const { category } = useAppSelector(filterSelector);
 
-  const handleChangeCategory = (value: number) => {
-    dispatch(setCategory(value));
-    dispatch(setPage(1));
-  };
+  const handleChangeCategory = useCallback(
+    (value: number) => {
+      dispatch(setCategory(value));
+      dispatch(setPage(1));
+    },
+    [dispatch]
+  );
 
   const showCategories = categories.map((item) => (
     <li
@@ -30,6 +34,6 @@ const Categories = () => {
   ));
 
   return <ul className={style.categories}>{showCategories}</ul>;
-};
+});
 
 export default Categories;

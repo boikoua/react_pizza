@@ -91,6 +91,7 @@ $clear-color-text: #b6b6b6;
 }
 
 .back {
+  text-align: center;
   color: rgb(211, 211, 211);
   padding: 10px 20px;
   border: 1px solid rgb(211, 211, 211);
@@ -109,9 +110,11 @@ $clear-color-text: #b6b6b6;
 }
 
 .pay {
+  text-align: center;
   color: #fff;
   padding: 10px 20px;
   border-radius: 30px;
+  border: 1px solid rgb(254, 95, 30);
   background: rgb(254, 95, 30);
   cursor: pointer;
   transition: all 0.3s ease;

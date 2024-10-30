@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Pizza } from '../../types/Pizza';
+import { RootState } from '../store';
 
 const DATA_LINK = 'https://66eb10d955ad32cda47b9003.mockapi.io/items';
 
@@ -65,6 +66,6 @@ export const pizzaSlice = createSlice({
   },
 });
 
-export const pizzaSelector = (state: { pizza: State }) => state.pizza;
+export const pizzaSelector = (state: RootState) => state.pizza;
 
 export default pizzaSlice.reducer;

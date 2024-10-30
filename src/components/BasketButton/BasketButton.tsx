@@ -2,8 +2,9 @@ import { Link } from 'react-router-dom';
 import style from './BasketButton.module.scss';
 import { useAppSelector } from '../../redux/hooks';
 import { cartSelector } from '../../redux/features/cartSlice';
+import React from 'react';
 
-const BasketButton = () => {
+const BasketButton = React.memo(() => {
   const { cart } = useAppSelector(cartSelector);
 
   const totalPrice =
@@ -23,6 +24,6 @@ const BasketButton = () => {
       </div>
     </Link>
   );
-};
+});
 
 export default BasketButton;

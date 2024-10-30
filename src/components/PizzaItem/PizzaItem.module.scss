@@ -13,8 +13,9 @@ $desc-text-color: #777777;
 .pizza {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  min-height: 480px;
   width: 280px;
   gap: 15px;
   padding: 30px 10px;
@@ -29,6 +30,7 @@ $desc-text-color: #777777;
   }
 
   @media (min-width: 768px) {
+    min-height: 530px;
     width: calc(100% / 2 - 15px);
   }
 
@@ -38,6 +40,7 @@ $desc-text-color: #777777;
 
   @media (min-width: 1440px) {
     width: calc(100% / 4 - 23px);
+    min-height: 510px;
   }
 }
 
@@ -72,6 +75,8 @@ $desc-text-color: #777777;
 }
 
 .footer {
+  // position: absolute;
+  // bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;

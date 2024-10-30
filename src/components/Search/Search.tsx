@@ -1,10 +1,10 @@
 import style from './Search.module.scss';
 import { setPage, setSearch } from '../../redux/features/filterSlice';
 import { useAppDispatch } from '../../redux/hooks';
-import { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import debounce from 'lodash.debounce';
 
-const Search = () => {
+const Search = React.memo(() => {
   const [value, setValue] = useState('');
 
   const dispatch = useAppDispatch();
@@ -50,6 +50,6 @@ const Search = () => {
       )}
     </div>
   );
-};
+});
 
 export default Search;
